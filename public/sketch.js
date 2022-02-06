@@ -19,12 +19,12 @@ function setup() {
 }
 
 function draw() {
-  background(250, 249, 246);
+  background(240);
   noStroke();
-  fill(200);
+  fill(220);
   rect(windowX, windowY, windowWidth, windowHeight);
   stroke(210);
-  fill(250, 249, 246);
+  fill(240);
 
   if (
     // if mousepressed within window, stretch curtain
@@ -60,7 +60,6 @@ function mouseReleased() {
   mouseP = false;
 }
 
-//make black and white
 //chnge gray to picture that is certian size or behind this view
 //make it to api
 //make new image come when curtain is rolled down
