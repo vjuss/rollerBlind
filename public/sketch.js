@@ -6,6 +6,7 @@ let curtainHeight;
 let mouseP;
 let mouseR;
 let lastCurtainHeight;
+let img;
 
 function setup() {
   createCanvas(800, 800);
@@ -16,6 +17,7 @@ function setup() {
   mouseP = false;
   mouseR = false;
   curtainHeight = 20; //initial value
+  loadJSON("https://api.thecatapi.com/v1/images/search", newPicture);
 }
 
 function draw() {
@@ -60,6 +62,11 @@ function mouseReleased() {
   mouseP = false;
 }
 
+function newPicture(data) {
+  console.log("new pic here");
+  createImg(data[0].url);
+  //image(img, 100, 100, 100, 100);
+}
 //chnge gray to picture that is certian size or behind this view
 //make it to api
 //make new image come when curtain is rolled down
