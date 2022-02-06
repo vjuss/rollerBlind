@@ -4,7 +4,8 @@ let windowWidth;
 let windowHeight;
 let curtainHeight;
 let mouseP;
-let mouseLastP = [];
+let mouseR;
+let lastCurtainHeight;
 
 function setup() {
   createCanvas(800, 800);
@@ -13,6 +14,8 @@ function setup() {
   windowWidth = width / 2;
   windowHeight = height / 2;
   mouseP = false;
+  mouseR = false;
+  curtainHeight = 20; //initial value
 }
 
 function draw() {
@@ -20,23 +23,32 @@ function draw() {
   noStroke();
   fill(200);
   rect(windowX, windowY, windowWidth, windowHeight);
-  //noStroke();
   stroke(210);
   fill(250, 249, 246);
-  curtainHeight = mouseY - windowY;
 
   if (
+    // if mousepressed within window, stretch curtain
     mouseX > windowX &&
     mouseX < windowX + windowWidth &&
     mouseY > windowY &&
     mouseY < windowY + windowHeight &&
     mouseP == true
   ) {
-    rect(windowX, windowX, windowWidth, curtainHeight); // if mousepressed within window, stretch curtain
+    curtainHeight = mouseY - windowY; // keeps drawing this if mousepress no longer true
+    lastCurtainHeight = curtainHeight;
+    console.log("Curtain is stretched");
+  } else if (
+    mouseX > windowX &&
+    mouseX < windowX + windowWidth &&
+    mouseY > windowY &&
+    mouseY < windowY + windowHeight &&
+    mouseP == false
+  ) {
+    console.log("Curtain released");
   } else {
-    // in any other case
-    rect(windowX, windowX, windowWidth, 20);
+    console.log("Curtain not active");
   }
+  rect(windowX, windowX, windowWidth, curtainHeight); // draw curtain with some height
 }
 
 function mousePressed() {
@@ -44,5 +56,13 @@ function mousePressed() {
 }
 
 function mouseReleased() {
+  mouseR = true;
   mouseP = false;
 }
+
+//make black and white
+//chnge gray to picture that is certian size or behind this view
+//make it to api
+//make new image come when curtain is rolled down
+//make touchscreen workß
+//takw to three.js
